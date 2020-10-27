@@ -6,6 +6,9 @@
 package client.management;
 
 import client.management.info.Client;
+import client.management.info.Person;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,6 +51,7 @@ public class FrontEnd extends javax.swing.JFrame {
         txtClientID = new javax.swing.JTextField();
         txtPurpose = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openItem = new javax.swing.JMenuItem();
@@ -123,6 +127,8 @@ public class FrontEnd extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Enter purpose of visit");
 
+        lblStatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel_RegLayout = new javax.swing.GroupLayout(jPanel_Reg);
         jPanel_Reg.setLayout(jPanel_RegLayout);
         jPanel_RegLayout.setHorizontalGroup(
@@ -154,6 +160,10 @@ public class FrontEnd extends javax.swing.JFrame {
                             .addComponent(txtSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel_RegLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel_RegLayout.setVerticalGroup(
             jPanel_RegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,6 +188,8 @@ public class FrontEnd extends javax.swing.JFrame {
                 .addGroup(jPanel_RegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPurpose, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -310,9 +322,20 @@ public class FrontEnd extends javax.swing.JFrame {
         Client cl = new Client();
         
         try{
-//             cl = txtName.toString(), txtSurname.toString(), txtAddress.toString(), txtClientID.toString(), txtPurpose.toString();
+            if(txtName.getText() == null && txtSurname.getText() == null 
+                    && txtAddress.getText() == null && txtClientID.getText() == null 
+                   && txtPurpose.getText() == null){
+                
+//                cl.toString() = txtName.getText() + txtSurname.getText() + txtAddress.getText() + txtClientID.getText() + txtPurpose.getText();
+                
+                
+                lblStatus.setForeground(Color.green);
+                lblStatus.setText("Client Details Added");
+            }
+//             cl.registerClient(txtName.getText() + txtSurname.getText() + txtAddress.getText() + txtClientID.getText() + txtPurpose.getText());
             
-            
+            lblStatus.setForeground(Color.red);
+            lblStatus.setText("Enter All fields");
                     
 //            recordsArea;
             
@@ -378,6 +401,7 @@ public class FrontEnd extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_frm;
     private javax.swing.JPanel jPanel_view;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openItem;
     private javax.swing.JMenuItem readItem;

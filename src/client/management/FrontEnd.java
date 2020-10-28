@@ -7,6 +7,7 @@ package client.management;
 
 import client.management.filemanager.FileManager;
 import client.management.info.Client;
+import client.management.info.Person;
 import java.awt.Color;
 
 /**
@@ -317,7 +318,7 @@ public class FrontEnd extends javax.swing.JFrame {
     }//GEN-LAST:event_exitItemActionPerformed
 
     private void saveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemActionPerformed
-        
+        Person prsn;
         Client cl = new Client();
         FileManager fm = new FileManager();
         
@@ -329,16 +330,31 @@ public class FrontEnd extends javax.swing.JFrame {
         String purposeOfVisit = txtPurpose.getText();
         
         try{
-            if(name == null && surname == null && address == null && clientID == null && purposeOfVisit == null){
+            if(name.isEmpty() && surname.isEmpty() && address.isEmpty() && clientID.isEmpty() && purposeOfVisit.isEmpty()){
 
                 lblStatus.setForeground(Color.red);
                 lblStatus.setText("Enter All fields");
             }
 
-            recordsArea.setText(name + "#" + surname + "#" + address + "#" + clientID + "#" + purposeOfVisit);
+//            recordsArea.setText(name + "#" + surname + "#" + address + "#" + clientID + "#" + purposeOfVisit);
             
+            cl.prsn.setName(name);
+            cl.prsn.setSurname(surname);
+            cl.prsn.setAddress(address);
+            cl.setClientID(clientID);
+            cl.setPurposeOfVisit(purposeOfVisit);
+            recordsArea.setText(cl.prsn.getName() + "#" +  cl.prsn.getSurname() + "#" + 
+                    cl.prsn.getAddress() + "#" +  cl.getClientID() + "#" +  cl.getPurposeOfVisit());
+            
+//            (name, surname, address, clientID, purposeOfVisit)
+                    
             fm.registerClient(cl, filename);
             
+            txtName.setText("");
+            txtSurname.setText("");
+            txtAddress.setText("");
+            txtClientID.setText("");
+            txtPurpose.setText("");
             
             lblStatus.setForeground(Color.green);
             lblStatus.setText("Client Details Added");
@@ -351,7 +367,15 @@ public class FrontEnd extends javax.swing.JFrame {
 
     private void readItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readItemActionPerformed
 
-        //            recordsArea;
+        try{
+        FileManager fm = new FileManager();
+        String filename = "D:\\Platform Design\\Client Management\\src\\ClientRecords.txt";
+//        recordsArea;
+
+//        recordsArea.read(fm.readClients[(filename)]);
+        }catch(Exception e){
+            
+        }
         
     }//GEN-LAST:event_readItemActionPerformed
 
@@ -380,6 +404,12 @@ public class FrontEnd extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrontEnd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

@@ -15,6 +15,22 @@ public class Client {
     public String clientID;
     public String purposeOfVisit;
     
+    public void setClientID(String clientID) {
+        clientID = this.clientID;
+    }
+    
+    public void setPurposeOfVisit(String purposeOfVisit) {
+        purposeOfVisit = this.purposeOfVisit;
+    }
+    
+    public String getClientID() {
+        return clientID;
+    }
+    
+    public String getPurposeOfVisit() {
+        return purposeOfVisit;
+    }
+    
     @Override
     public String toString(){
         return prsn.toString() + "#" + clientID + "#" + purposeOfVisit;

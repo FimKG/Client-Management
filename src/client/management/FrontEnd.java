@@ -321,23 +321,26 @@ public class FrontEnd extends javax.swing.JFrame {
         
         Client cl = new Client();
         
+        String name = txtName.getText();
+        String surname = txtSurname.getText();
+        String address = txtAddress.getText();
+        String clientID = txtClientID.getText();
+        String purpose = txtPurpose.getText();
+        
         try{
-            if(txtName.getText() == null && txtSurname.getText() == null 
-                    && txtAddress.getText() == null && txtClientID.getText() == null 
-                   && txtPurpose.getText() == null){
+            if(name == null && surname == null && address == null && clientID == null && purpose == null){
+                cl.toString();
                 
-//                cl.toString() = txtName.getText() + txtSurname.getText() + txtAddress.getText() + txtClientID.getText() + txtPurpose.getText();
-                
-                
-                lblStatus.setForeground(Color.green);
-                lblStatus.setText("Client Details Added");
+                lblStatus.setForeground(Color.red);
+                lblStatus.setText("Enter All fields");
             }
-//             cl.registerClient(txtName.getText() + txtSurname.getText() + txtAddress.getText() + txtClientID.getText() + txtPurpose.getText());
+
+            recordsArea.setText(name + surname + address + clientID + purpose);
             
-            lblStatus.setForeground(Color.red);
-            lblStatus.setText("Enter All fields");
-                    
-//            recordsArea;
+//            cl.
+            
+            lblStatus.setForeground(Color.green);
+            lblStatus.setText("Client Details Added");
             
         }catch(Exception e){
             
@@ -346,7 +349,9 @@ public class FrontEnd extends javax.swing.JFrame {
     }//GEN-LAST:event_saveItemActionPerformed
 
     private void readItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readItemActionPerformed
-        // TODO add your handling code here:
+
+        //            recordsArea;
+        
     }//GEN-LAST:event_readItemActionPerformed
 
     /**

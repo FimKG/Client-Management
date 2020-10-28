@@ -6,8 +6,11 @@
 package client.management.filemanager;
 
 import client.management.info.Client;
+import java.util.List;
 import java.io.*;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  *
@@ -27,33 +30,35 @@ public class FileManager {
     
     public void open(String filepath) {
         
-//        readClients();
         
-
+        
+        openFile = new File(filepath); 
+        
     }
     
     public int countRows(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
         
-        ObjectInputStream ob = new ObjectInputStream(new FileInputStream(new File(filename)));
-        
-        try {
+        try (ObjectInputStream ob = new ObjectInputStream(new FileInputStream(new File(filename)))) {
             int i = 0;
             while((i = ob.read()) != -1) {
                 ++i;
             }return (i == 0) ? 1 : i;
-        }finally {
-            ob.close();
         }
         
     }
     
     public void registerClient(Client clInfo, String filename) throws FileNotFoundException, IOException {
-        
-        ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(new File(filename), true));
-        
+
         try {
-            ob.writeObject(clInfo);
-            ob.close();
+
+            File file = new File(filename);
+
+            FileWriter fr = new FileWriter(file, true);
+
+            fr.write(clInfo.toString() + "\n");
+
+            fr.close();
+            
         }catch(IndexOutOfBoundsException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -62,16 +67,17 @@ public class FileManager {
     
     public Client[] readClients(String filename)  throws FileNotFoundException, IOException, ClassNotFoundException {	
         
-       ObjectInputStream ob = new ObjectInputStream(new FileInputStream(new File(filename)));
-       Client[] client = new Client[countRows(filename)];
-       
-       try{
-           for(int x=0; x < client.length; x++) {
-               client[x] = (Client) ob.readObject();
-           }
-       }catch(IndexOutOfBoundsException e) {
-           System.out.println("Error : " + e.getMessage());
-       }ob.close();
-       return client;
+        List<String> allLines = Files.readAllLines(Paths.get(filename));
+        System.out.println("Error: " + allLines.size());
+        Client[] client = new Client[allLines.size()];
+        
+        for (int i = 0; i < allLines.size(); i++) {
+            
+            String array[] = allLines.get(i).split("#");
+            
+            client[i] = new Client(array[0], array[1], array[2], array[3], array[4]);
+        }
+        
+        return client;
     }
 }

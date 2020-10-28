@@ -9,18 +9,32 @@ package client.management.info;
  *
  * @author KGAUGELO
  */
-public class Client {
+public class Client extends Person {
     
-    public Person prsn;
+    
     public String clientID;
     public String purposeOfVisit;
+
+    public Client(String name, String surname, String address, String clientID, String purposeOfVisit) {
+        
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.clientID = clientID;
+        this.purposeOfVisit = purposeOfVisit;
+        
+    }
+
+    public Client() {
+       
+    }
     
     public void setClientID(String clientID) {
-        clientID = this.clientID;
+        this.clientID = clientID;
     }
     
     public void setPurposeOfVisit(String purposeOfVisit) {
-        purposeOfVisit = this.purposeOfVisit;
+        this.purposeOfVisit = purposeOfVisit;
     }
     
     public String getClientID() {
@@ -31,9 +45,10 @@ public class Client {
         return purposeOfVisit;
     }
     
+    
     @Override
     public String toString(){
-        return prsn.toString() + "#" + clientID + "#" + purposeOfVisit;
+        return super.toString() + "#" + clientID + "#" + purposeOfVisit;
     }
     
     

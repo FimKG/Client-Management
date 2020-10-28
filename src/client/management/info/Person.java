@@ -10,22 +10,23 @@ package client.management.info;
  * @author KGAUGELO
  */
 public abstract class Person {
+
+    protected String name;
+    protected String surname;
+    protected String address;
     
-    private String name;
-    private String surname;
-    private String address;
+    public Person () {}  
     
-        
     public void setName(String name) {
-        name = this.name;
+        this.name = name;
     }
     
     public void setSurname(String surname) {
-        surname = this.surname;
+        this.surname = surname;
     }
     
     public void setAddress(String address) {
-        address = this.address;
+        this.address = address;
     }
     
     public String getName() {

@@ -5,10 +5,9 @@
  */
 package client.management;
 
+import client.management.filemanager.FileManager;
 import client.management.info.Client;
-import client.management.info.Person;
 import java.awt.Color;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -320,24 +319,26 @@ public class FrontEnd extends javax.swing.JFrame {
     private void saveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemActionPerformed
         
         Client cl = new Client();
+        FileManager fm = new FileManager();
         
+        String filename = "D:\\Platform Design\\Client Management\\src\\ClientRecords.txt";
         String name = txtName.getText();
         String surname = txtSurname.getText();
         String address = txtAddress.getText();
         String clientID = txtClientID.getText();
-        String purpose = txtPurpose.getText();
+        String purposeOfVisit = txtPurpose.getText();
         
         try{
-            if(name == null && surname == null && address == null && clientID == null && purpose == null){
-                cl.toString();
-                
+            if(name == null && surname == null && address == null && clientID == null && purposeOfVisit == null){
+
                 lblStatus.setForeground(Color.red);
                 lblStatus.setText("Enter All fields");
             }
 
-            recordsArea.setText(name + surname + address + clientID + purpose);
+            recordsArea.setText(name + "#" + surname + "#" + address + "#" + clientID + "#" + purposeOfVisit);
             
-//            cl.
+            fm.registerClient(cl, filename);
+            
             
             lblStatus.setForeground(Color.green);
             lblStatus.setText("Client Details Added");

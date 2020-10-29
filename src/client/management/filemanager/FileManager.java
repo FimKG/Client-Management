@@ -22,16 +22,12 @@ public class FileManager {
 //ClassNotFoundException, FileNotFoundException,IOException, 
 //NoSuchFieldException, NumberFormatException, 
 //StringIndexOutOfBoundsException
-    
-    
-    //front class
+
     private File openFile;
     
     
     public void open(String filepath) {
-        
-        
-        
+
         openFile = new File(filepath); 
         
     }
@@ -53,11 +49,9 @@ public class FileManager {
 
             File file = new File(filename);
 
-            FileWriter fr = new FileWriter(file, true);
-
-            fr.write(clInfo.toString() + "\n");
-
-            fr.close();
+            try (FileWriter fr = new FileWriter(file, true)) {
+                fr.write(clInfo.toString() + "\n");
+            }
             
         }catch(IndexOutOfBoundsException e) {
             System.out.println("Error: " + e.getMessage());
@@ -68,7 +62,7 @@ public class FileManager {
     public Client[] readClients(String filename)  throws FileNotFoundException, IOException, ClassNotFoundException {	
         
         List<String> allLines = Files.readAllLines(Paths.get(filename));
-        System.out.println("Error: " + allLines.size());
+        
         Client[] client = new Client[allLines.size()];
         
         for (int i = 0; i < allLines.size(); i++) {

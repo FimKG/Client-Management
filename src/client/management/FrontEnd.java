@@ -9,7 +9,6 @@ import client.management.filemanager.FileManager;
 import client.management.info.Client;
 import java.awt.Color;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +18,7 @@ import javax.swing.JOptionPane;
 public class FrontEnd extends javax.swing.JFrame {
 
     /**
-     * Creates new form mange_Client
+     * Creates new form FrontEnd
      */
     public FrontEnd() {
         initComponents();
@@ -34,7 +33,6 @@ public class FrontEnd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
         jPanel2 = new javax.swing.JPanel();
         frmClient = new javax.swing.JInternalFrame();
         desktop = new javax.swing.JDesktopPane();
@@ -61,7 +59,6 @@ public class FrontEnd extends javax.swing.JFrame {
         readItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
 
-        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Client Management");
@@ -80,6 +77,7 @@ public class FrontEnd extends javax.swing.JFrame {
         jPanel_view.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)), "View Details", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel_view.setToolTipText("");
 
+        recordsArea.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
         jScrollPane2.setViewportView(recordsArea);
 
         javax.swing.GroupLayout jPanel_viewLayout = new javax.swing.GroupLayout(jPanel_view);
@@ -303,10 +301,9 @@ public class FrontEnd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openItemActionPerformed
-        // TODO add your handling code here:
+
         
-        
-        menuBar.add(desktop);
+
     }//GEN-LAST:event_openItemActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
@@ -319,7 +316,7 @@ public class FrontEnd extends javax.swing.JFrame {
 
         FileManager fm = new FileManager();
         
-        String filename = "D:\\Platform Design\\web mockup\\Java App\\Client-Management\\src\\ClientRecords.txt";
+        String filename = "ClientRecords.txt";
         
         try{
             if(txtName.getText().isEmpty() && txtSurname.getText().isEmpty() && txtAddress.getText().isEmpty() && txtClientID.getText().isEmpty() && txtPurpose.getText().isEmpty()){
@@ -347,7 +344,7 @@ public class FrontEnd extends javax.swing.JFrame {
             lblStatus.setText("Client Details Added");
             
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
         
     }//GEN-LAST:event_saveItemActionPerformed
@@ -356,8 +353,8 @@ public class FrontEnd extends javax.swing.JFrame {
 
         try{
         FileManager fm = new FileManager();
-        String filename = "D:\\Platform Design\\web mockup\\Java App\\Client-Management\\src\\ClientRecords.txt";
-        DefaultListModel model = new DefaultListModel();
+        String filename = "ClientRecords.txt";
+        DefaultListModel<String> model = new DefaultListModel<String>();
         
         for(Client cl : fm.readClients(filename)){
             
